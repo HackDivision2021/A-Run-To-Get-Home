@@ -11,6 +11,7 @@ public class FloorSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Manager to Move floors constantly
         if (transform.position.z > currentFloor.transform.position.z+37)
         {
             currentFloor.transform.position = new Vector3(0, 0, nextFloor.transform.position.z + 32);

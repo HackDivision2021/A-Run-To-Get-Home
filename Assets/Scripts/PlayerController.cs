@@ -30,7 +30,10 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     float currentTime;
     float durationTime = 0.4f;
+
+    //public variables
     public float horizontalSpeed = 3f;
+
     //float jumpForce = 100f;
     //float gravity = 10f;
 
