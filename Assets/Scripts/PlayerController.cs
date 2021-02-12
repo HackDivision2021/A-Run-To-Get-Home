@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum InputDirection
 {
@@ -30,16 +31,20 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     float currentTime;
     float durationTime = 0.4f;
+    public AudioClip deadClip;
+    public bool isRoll;
 
     //public variables
     public float horizontalSpeed = 3f;
 
+    public static PlayerController instance;
     //float jumpForce = 100f;
     //float gravity = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         //StartCoroutine(UpdateAction());
         currentPosition = CurrentPosition.MIDDLE;
         controller = GetComponent<CharacterController>();
@@ -48,6 +53,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameAttributes.instance.life <= 0)
+        {
+            speed = 0;
+            AnimationManger.instance.animationHandler = AnimationManger.instance.PlayDead;
+            AudioSource.PlayClipAtPoint(deadClip, Camera.main.transform.position-Vector3.back*5);
+
+            StartCoroutine(LoadFailScene());
+            return;
+        }
 
         Move();
 
@@ -234,5 +248,15 @@ public class PlayerController : MonoBehaviour
     //        }
     //    }
     //}
+
+    /// <summary>
+    /// load failure scene
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator LoadFailScene()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Game_Over");
+    }
 
 }

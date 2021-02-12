@@ -64,6 +64,11 @@ public class AnimationManger : MonoBehaviour
         if (animation[roll.name].normalizedTime >= 0.95f)
         {
             animationHandler = PlayRun;
+            PlayerController.instance.isRoll = false;
+        }
+        else
+        {
+            PlayerController.instance.isRoll = true;
         }
     }
 
