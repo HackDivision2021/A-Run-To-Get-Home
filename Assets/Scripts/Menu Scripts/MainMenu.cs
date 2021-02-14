@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour, IPointerEnterHandler
 {
+    //sound to trigger on button
     public void OnPointerEnter(PointerEventData eventData)
     {
         SoundManager.instance.PlayPointerEnter();

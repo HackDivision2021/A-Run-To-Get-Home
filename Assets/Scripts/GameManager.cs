@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject resumeButton;
     public GameObject pauseButton;
 
+    //logic for clicking on the pause button
     public void OnPauseButtonClicked()
     {
         Time.timeScale = 0;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
         pauseButton.SetActive(false);
     }
 
+    //logic for clicking on the resume button
     public void OnResumeButtonClicked()
     {
         Time.timeScale = 1;
