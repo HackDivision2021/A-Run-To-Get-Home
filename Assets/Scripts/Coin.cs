@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/***
+ * This class is for coins
+ */
 public class Coin : MonoBehaviour
 {
     public float rotateSpeed = 1;
@@ -20,8 +23,10 @@ public class Coin : MonoBehaviour
         transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
     }
 
+    // handle trigger enter event
     private void OnTriggerEnter(Collider other)
     {
+        // if the tag of collided go is "Player"
         if(other.CompareTag("Player"))
         {
             GameAttributes.instance.coin++;

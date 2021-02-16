@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/***
+ * This class is for enemy use
+ */
+
 public class EnemyBehavior : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/***
+ * record the button the user inputs
+ */
 public enum InputDirection
 {
     NULL,
@@ -12,6 +15,9 @@ public enum InputDirection
     DOWN
 }
 
+/***
+ * record the current position of the player
+ */
 public enum CurrentPosition
 {
     LEFT,
@@ -53,6 +59,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // whether can control player based on the life
         if (GameAttributes.instance.life <= 0)
         {
             speed = 0;
@@ -82,6 +89,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// get the direction of input
+    /// </summary>
     void GetInputDirection()
     {
         inputDirection = InputDirection.NULL;
@@ -119,6 +129,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// move method
+    /// </summary>
     void Move()
     {
         inputDirection = InputDirection.NULL;
@@ -190,6 +203,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// move left method
+    /// </summary>
     void MoveLeft()
     {
 
@@ -210,6 +226,9 @@ public class PlayerController : MonoBehaviour
         xDirection = Vector3.left;
     }
 
+    /// <summary>
+    /// move rght method
+    /// </summary>
     void MoveRight()
     {
         if (currentPosition == CurrentPosition.RIGHT) return;
@@ -228,6 +247,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// roll method
+    /// </summary>
     void Roll()
     {
         AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRoll;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/***
+ * This class is for destination
+ */
 public class Destination : MonoBehaviour
 {
     public static Destination instance;

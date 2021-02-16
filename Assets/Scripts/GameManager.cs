@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/***
+ * This class is for UI control
+ */
 public class GameManager : MonoBehaviour
 {
     public GameObject resumeButton;

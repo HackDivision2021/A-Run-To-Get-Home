@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/***
+ * This class is to set floor looping
+ */
 public class FloorSetting : MonoBehaviour
 {
     public GameObject currentFloor;

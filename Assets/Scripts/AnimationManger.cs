@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * This class is for animation only
+ */
 public class AnimationManger : MonoBehaviour
 {
     public delegate void AnimationHandler();

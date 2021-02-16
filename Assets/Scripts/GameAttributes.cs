@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/***
+ * This class is to record the number of collectives and life
+ */
 
 public class GameAttributes : MonoBehaviour
 {
