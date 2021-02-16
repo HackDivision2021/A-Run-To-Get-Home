@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Pablo Saldarriaga ID: 301092976
+ * Cong Wang ID: 301098547
+ * Xavier de Moraes Batista, Arthur Ivson id: 301063251
+ */
 public class GameOver : MonoBehaviour
 {
     //play again button

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 public class KeyBindManager : MonoBehaviour
 {
     //Singleton to access the manager in different parts

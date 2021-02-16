@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Pablo Saldarriaga ID: 301092976
+ * Cong Wang ID: 301098547
+ * Xavier de Moraes Batista, Arthur Ivson id: 301063251
+ */
+
+//display of directions
 public enum InputDirection
 {
     NULL,
@@ -12,6 +19,7 @@ public enum InputDirection
     DOWN
 }
 
+//possible positions
 public enum CurrentPosition
 {
     LEFT,
@@ -31,35 +39,40 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     float currentTime;
     float durationTime = 0.4f;
-    public AudioClip deadClip;
-    public bool isRoll;
+    
 
     //public variables
     public float horizontalSpeed = 3f;
+    public AudioClip deadClip;
+    public bool isRoll;
 
     public static PlayerController instance;
     //float jumpForce = 100f;
     //float gravity = 10f;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        instance = this;
+        instance = this; //set player controller
         //StartCoroutine(UpdateAction());
+
+        //default position is: middle
         currentPosition = CurrentPosition.MIDDLE;
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        //if player life is less than 0
         if (GameAttributes.instance.life <= 0)
         {
+            //stop player
             speed = 0;
-            AnimationManger.instance.animationHandler = AnimationManger.instance.PlayDead;
-            AudioSource.PlayClipAtPoint(deadClip, Camera.main.transform.position-Vector3.back*5);
+            AnimationManger.instance.animationHandler = AnimationManger.instance.PlayDead; //play death animation
+            AudioSource.PlayClipAtPoint(deadClip, Camera.main.transform.position-Vector3.back*5); //death audio clip
 
-            StartCoroutine(LoadFailScene());
+            StartCoroutine(LoadFailScene());//game over menu
             return;
         }
 
@@ -74,6 +87,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator UpdateAction()
     {
+        //update actions contantly
         while (true)
         {
             GetInputDirection();
@@ -82,6 +96,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Input manager
     void GetInputDirection()
     {
         inputDirection = InputDirection.NULL;
@@ -119,36 +134,39 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Logic for moving player
     void Move()
     {
         inputDirection = InputDirection.NULL;
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
+        //moving right
         if (x>0 && currentTime>durationTime)
         {
             inputDirection = InputDirection.RIGHT;
-            MoveRight();
-            StartCoroutine(KeepStill());
+            MoveRight(); //execute move right method
+            StartCoroutine(KeepStill()); //keep still method for 0.3s
             currentTime = 0;
             return;
-        }else if (x < 0 && currentTime > durationTime)
+        }else if (x < 0 && currentTime > durationTime) //moving left
         {
             inputDirection = InputDirection.LEFT;
-            MoveLeft();
-            StartCoroutine(KeepStill());
+            MoveLeft();//execute move left method
+            StartCoroutine(KeepStill());//keep still method for 0.3s
             currentTime = 0;
             return;
         }else if (y > 0 && currentTime > durationTime)
         {
-            inputDirection = InputDirection.UP;
+            //moving up or jump (currently not functional)
+            inputDirection = InputDirection.UP; 
             currentTime = 0;
             //JumpUp();
             return;
         }
-        else if (y < 0 && currentTime > durationTime)
+        else if (y < 0 && currentTime > durationTime) //rolling 
         {
             inputDirection = InputDirection.DOWN;
-            Roll();
+            Roll(); //exectute roll method
             currentTime = 0;
             return;
         }
@@ -159,10 +177,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //Keep still logic after actions 
     IEnumerator KeepStill()
     {
-        yield return new WaitForSeconds(0.3f);
-        inputDirection = InputDirection.NULL;
+        yield return new WaitForSeconds(0.3f);//wait 0.3 seconds
+        inputDirection = InputDirection.NULL; //no input registered
         xDirection = Vector3.zero;
     }
 
@@ -170,36 +189,46 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// animation testing
     /// </summary>
+    /// 
+    //animation manager
     void PlayAnimation()
     {
+        //animation left
         if (inputDirection == InputDirection.LEFT)
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayTurnLeft;
         }
+        //animation right
         else if (inputDirection == InputDirection.RIGHT)
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayTurnRight;
         }
+        //jump (not functional)
         else if (inputDirection == InputDirection.UP)
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayJumpUp;
         }
+        //roll
         else if (inputDirection == InputDirection.DOWN)
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRoll;
         }
     }
 
+
+    // Moving left logic
     void MoveLeft()
     {
 
-        if (currentPosition == CurrentPosition.LEFT) return;
+        if (currentPosition == CurrentPosition.LEFT) return; //if player left dont let player move left
 
+        //go left
         if (currentPosition == CurrentPosition.MIDDLE)
         {
             currentPosition = CurrentPosition.LEFT;
             if (transform.position.x <= 0.5f) xDirection=Vector3.zero;
         }
+        //go middle
         else if (currentPosition == CurrentPosition.RIGHT)
         {
             if (transform.position.x <= 2.5f) xDirection = Vector3.zero;
@@ -210,14 +239,17 @@ public class PlayerController : MonoBehaviour
         xDirection = Vector3.left;
     }
 
+    //Moving right logic
     void MoveRight()
     {
-        if (currentPosition == CurrentPosition.RIGHT) return;
-        
+        if (currentPosition == CurrentPosition.RIGHT) return; //if player right dont let player move right
+
+        //go right
         if (currentPosition == CurrentPosition.MIDDLE)
         {
             currentPosition = CurrentPosition.RIGHT;
         }
+        //go middle
         else if (currentPosition == CurrentPosition.LEFT)
         {
             currentPosition = CurrentPosition.MIDDLE;
@@ -228,8 +260,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //Rolling logic
     void Roll()
     {
+        //roll animation
         AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRoll;
     }
 
@@ -253,8 +287,12 @@ public class PlayerController : MonoBehaviour
     /// load failure scene
     /// </summary>
     /// <returns></returns>
+    /// 
+
+    //display game over
     IEnumerator LoadFailScene()
     {
+        //wait for 3 seconds, then display the game over
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Game_Over");
     }

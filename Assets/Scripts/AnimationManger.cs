@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Pablo Saldarriaga ID: 301092976
+ * Cong Wang ID: 301098547
+ * Xavier de Moraes Batista, Arthur Ivson id: 301063251
+ */
 public class AnimationManger : MonoBehaviour
 {
+    //Public variables
     public delegate void AnimationHandler();
     public AnimationHandler animationHandler;
 
@@ -39,6 +45,7 @@ public class AnimationManger : MonoBehaviour
 
     }
 
+    //functions to play animations by getting the parameters
     public void PlayDead() => animation.Play(dead.name);
     public void PlayJumpDown() => animation.Play(jumpDown.name);
     public void PlayJumpLoop() => animation.Play(jumpLoop.name);

@@ -1541,9 +1541,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  horizontalSpeed: 9
   deadClip: {fileID: 8300000, guid: b0d3bdd07f7d44f08b603e109b42fa7e, type: 3}
   isRoll: 0
-  horizontalSpeed: 9
 --- !u!136 &247467088
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7562,6 +7562,10 @@ PrefabInstance:
       value: PoliceOfficer (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
+      propertyPath: m_Speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
       propertyPath: m_Radius
       value: 5
       objectReference: {fileID: 0}
@@ -7572,6 +7576,10 @@ PrefabInstance:
     - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
       propertyPath: m_BaseOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7714729506739420035, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
       propertyPath: player
@@ -8157,12 +8165,20 @@ PrefabInstance:
       value: PoliceOfficer
       objectReference: {fileID: 0}
     - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
+      propertyPath: m_Speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
       propertyPath: m_Radius
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
       propertyPath: m_BaseOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7714729506739420035, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
       propertyPath: player
