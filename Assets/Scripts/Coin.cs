@@ -20,13 +20,13 @@ public class Coin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
+        transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, 0);
     }
 
     // handle trigger enter event
     private void OnTriggerEnter(Collider other)
     {
-        // if the tag of collided go is "Player"
+        // if the tag of collided GO is "Player"
         if(other.CompareTag("Player"))
         {
             GameAttributes.instance.coin++;
