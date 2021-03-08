@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1280397283553206868}
   - component: {fileID: 1285126713553061124}
+  - component: {fileID: 323174889}
   m_Layer: 0
   m_Name: Police_car
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283655654700332772}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.1, y: 0.5, z: 26}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -49,6 +50,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.79600894, y: 0.74107355, z: 2.3324394}
   m_Center: {x: -0.00028294325, y: 0.3374255, z: -0.015554428}
+--- !u!114 &323174889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283655654700332772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35b239196c684a049667f88233ae351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtValue: 1
 --- !u!1 &1283907389686861976
 GameObject:
   m_ObjectHideFlags: 0

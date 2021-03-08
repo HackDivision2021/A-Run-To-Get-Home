@@ -14,7 +14,7 @@ public class GameAttributes : MonoBehaviour
     public int DiamondCount { get; set; }
 
     public static GameAttributes instance;
-    public int life = 1;
+    public int life = 5;
 
     // Start is called before the first frame update
     void Start()

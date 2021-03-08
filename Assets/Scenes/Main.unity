@@ -1071,7 +1071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 69bd7a488286c495fb9b1fe91ee54de2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 63.1
+      value: -151.49
       objectReference: {fileID: 0}
     - target: {fileID: 400056, guid: 69bd7a488286c495fb9b1fe91ee54de2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1823,7 +1823,7 @@ GameObject:
   - component: {fileID: 230156213}
   m_Layer: 0
   m_Name: barrier2 (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1932,7 +1932,7 @@ GameObject:
   - component: {fileID: 230269171}
   m_Layer: 0
   m_Name: barrier2 (12)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2042,7 +2042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &239672015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2104,7 +2104,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1596280376}
   m_HandleRect: {fileID: 0}
@@ -2176,6 +2176,9 @@ MonoBehaviour:
   deadClip: {fileID: 8300000, guid: b0d3bdd07f7d44f08b603e109b42fa7e, type: 3}
   isRoll: 0
   horizontalSpeed: 9
+  health: 5
+  slider: {fileID: 239672016}
+  hitObstacle: {fileID: 8300000, guid: fa5fff2e1fe1a4744aca3a8c969abe47, type: 3}
 --- !u!136 &247467088
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2705,24 +2708,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1280397283553206868, guid: 35fbf43e404044c63852e97ce0588aba, type: 3}
   m_PrefabInstance: {fileID: 323174886}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &323174888 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1283655654700332772, guid: 35fbf43e404044c63852e97ce0588aba, type: 3}
-  m_PrefabInstance: {fileID: 323174886}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &323174889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323174888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35b239196c684a049667f88233ae351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hurtValue: 1
 --- !u!1001 &324166301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2800,7 +2785,7 @@ GameObject:
   - component: {fileID: 326148196}
   m_Layer: 0
   m_Name: barrier2 (10)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3507,7 +3492,7 @@ GameObject:
   - component: {fileID: 406527846}
   m_Layer: 0
   m_Name: barrier2 (8)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3986,7 +3971,7 @@ GameObject:
   - component: {fileID: 423421480}
   m_Layer: 0
   m_Name: barrier2 (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6478,7 +6463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &831276018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6613,7 +6598,7 @@ GameObject:
   - component: {fileID: 836517090}
   m_Layer: 0
   m_Name: barrier2 (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7017,7 +7002,7 @@ GameObject:
   - component: {fileID: 857897806}
   m_Layer: 0
   m_Name: barrier2 (7)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7556,7 +7541,7 @@ GameObject:
   - component: {fileID: 910857377}
   m_Layer: 0
   m_Name: barrier3
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8633,7 +8618,7 @@ GameObject:
   - component: {fileID: 1053693745}
   m_Layer: 0
   m_Name: barrier2 (11)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9681,8 +9666,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181389157}
-  m_LocalRotation: {x: 0.16895369, y: -0.00000001896076, z: 0.0000000032502159, w: 0.985624}
-  m_LocalPosition: {x: 0, y: 4.77, z: 301.40997}
+  m_LocalRotation: {x: 0.16895387, y: 0.000000008479511, z: -0.0000000014535423, w: 0.98562396}
+  m_LocalPosition: {x: 0, y: 4.77, z: -20.475018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10196,7 +10181,7 @@ GameObject:
   - component: {fileID: 1275165866}
   m_Layer: 0
   m_Name: barrier2
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11479,8 +11464,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468299271}
-  m_LocalRotation: {x: 0.16895369, y: -0.00000001896076, z: 0.0000000032502159, w: 0.985624}
-  m_LocalPosition: {x: 1.1157961, y: 5.9088826, z: 308.0419}
+  m_LocalRotation: {x: 0.16895387, y: 0.000000008479511, z: -0.0000000014535423, w: 0.98562396}
+  m_LocalPosition: {x: 1.1157961, y: 5.9088826, z: -13.843086}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 340651170}
@@ -12143,7 +12128,7 @@ GameObject:
   - component: {fileID: 1519323204}
   m_Layer: 0
   m_Name: barrier2 (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12314,7 +12299,7 @@ GameObject:
   - component: {fileID: 1530592620}
   m_Layer: 0
   m_Name: barrier2 (13)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13081,7 +13066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1596280376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13097,7 +13082,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13108,7 +13093,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596280375}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -13870,7 +13855,7 @@ GameObject:
   - component: {fileID: 1673804684}
   m_Layer: 0
   m_Name: barrier2 (9)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14327,7 +14312,7 @@ GameObject:
   - component: {fileID: 1742965492}
   m_Layer: 0
   m_Name: barrier2 (6)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15551,7 +15536,7 @@ GameObject:
   - component: {fileID: 1984341408}
   m_Layer: 0
   m_Name: barrier2 (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16772,10 +16757,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4899142491155175322, guid: a1539291331164155bce6b670bf4248c, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 4899142491155175322, guid: a1539291331164155bce6b670bf4248c, type: 3}
       propertyPath: m_Name
       value: bus_blue(ready_to_move)
       objectReference: {fileID: 0}
@@ -16902,21 +16883,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081333759}
     m_Modifications:
-    - target: {fileID: 3154065781275191120, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7480848748288543797, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
       propertyPath: m_Name
       value: PoliceOfficer
-      objectReference: {fileID: 0}
-    - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
-      propertyPath: m_Radius
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7714729506739420034, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
-      propertyPath: m_BaseOffset
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7714729506739420035, guid: e5b0a1edc2f662e4f977b2c8f8cca5bc, type: 3}
       propertyPath: player

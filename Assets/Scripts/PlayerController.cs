@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /***
  * record the button the user inputs
@@ -47,6 +48,13 @@ public class PlayerController : MonoBehaviour
     //float jumpForce = 100f;
     //float gravity = 10f;
 
+    //Health Attributes
+    [Header("Health Attributes")]
+    public float health;
+    public Slider slider;
+    public AudioClip hitObstacle;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,13 +62,21 @@ public class PlayerController : MonoBehaviour
         //StartCoroutine(UpdateAction());
         currentPosition = CurrentPosition.MIDDLE;
         controller = GetComponent<CharacterController>();
+
+        // assigns health value to the health bar slider
+        health = 5;
+        slider.value = health;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        // updates slider value according to health
+        slider.value = health;
+
         // whether can control player based on the life
-        if (GameAttributes.instance.life <= 0)
+        if(health <= 0)
         {
             speed = 0;
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayDead;
@@ -77,6 +93,29 @@ public class PlayerController : MonoBehaviour
 
         controller.Move((xDirection * horizontalSpeed + moveDirection) * Time.deltaTime);
 
+    }
+
+    // function to detect player collision and decrese player health
+    private void OnTriggerEnter(Collider other)
+    {
+        //if player collides with an object with Tag "Obstacle" (barriers and cars) 
+        //life bar is decreased by 1 and hitObstacle sound is played
+        //"Obstacle is destroyed on collision"
+        if (other.CompareTag("Obstacle"))
+        {
+            health--;
+            slider.value = health;
+            AudioSource.PlayClipAtPoint(hitObstacle, this.transform.position);
+            Destroy(other.gameObject);
+        }
+
+        //if player collides with an object with Tah "Enemy" (police officers)
+        //he automatically loses the game.
+        if (other.CompareTag("Enemy"))
+        {
+            health = 0;
+            slider.value = health;
+        }
     }
 
     IEnumerator UpdateAction()
