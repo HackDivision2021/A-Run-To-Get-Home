@@ -29,7 +29,7 @@ public class Coin : MonoBehaviour
         // if the tag of collided GO is "Player"
         if(other.CompareTag("Player"))
         {
-            GameAttributes.instance.coin++;
+            GameAttributes.instance.CoinCount++;
             AudioSource.PlayClipAtPoint(hitClip, this.transform.position);
 
             GameObject hitEffectGO = Instantiate(hitEffect, this.transform.position, Quaternion.identity);

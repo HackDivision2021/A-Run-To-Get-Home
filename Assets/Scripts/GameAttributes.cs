@@ -7,7 +7,12 @@ using UnityEngine;
 
 public class GameAttributes : MonoBehaviour
 {
-    public int coin = 0;
+    private int _coinCount;
+    private int diamondCount;
+
+    public int CoinCount { get; set; }
+    public int DiamondCount { get; set; }
+
     public static GameAttributes instance;
     public int life = 1;
 

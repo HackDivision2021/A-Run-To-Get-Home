@@ -35,6 +35,6 @@ public class Diamond : MonoBehaviour
         // 4. destory particle system
         Destroy(particle, 0.5f);
         // 5. store the number of the object
-        Collectives.instance.DiamondIncrease();
+        GameAttributes.instance.DiamondCount++;
     }
 }

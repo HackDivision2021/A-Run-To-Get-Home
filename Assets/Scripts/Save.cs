@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Save : MonoBehaviour
+[System.Serializable]
+public class Save
 {
     // record the number of coins
     public int coinNum;
@@ -11,7 +12,8 @@ public class Save : MonoBehaviour
     public int diamondNum;
 
     // record the position of the player
-    public Vector3 playPosition;
-
+    public float playerPositionX;
+    public float playerPositionY;
+    public float playerPositionZ;
 
 }

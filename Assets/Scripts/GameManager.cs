@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 
 /***
  * This class is for UI control
@@ -21,19 +22,23 @@ public class GameManager : MonoBehaviour
     //logic for clicking on the pause button
     public void OnPauseButtonClicked()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         resumeButton.SetActive(true);
         pauseButton.SetActive(false);
         saveButton.SetActive(true);
+        player.GetComponent<Animation>().enabled = false;
+        player.GetComponent<PlayerController>().enabled = false;
     }
 
     //logic for clicking on the resume button
     public void OnResumeButtonClicked()
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         resumeButton.SetActive(false);
         pauseButton.SetActive(true);
         saveButton.SetActive(false);
+        player.GetComponent<Animation>().enabled = true;
+        player.GetComponent<PlayerController>().enabled = true;
     }
 
     private void Update()
@@ -60,22 +65,31 @@ public class GameManager : MonoBehaviour
         // 1. show the saving text for 2 seconds
         StartCoroutine(ShowSavingText());
 
-        //// 2. save game
-        //Save save = CreateSaveGO();
-        //// using binary to save game
-        //BinaryFormatter bf = new BinaryFormatter();
-        //FileStream fileStream = File.Create(Application.dataPath + "/StreamingFile" + "/save_game.txt");
+        // 2. save game
+        Save save = CreateSaveGO();
+        string saveJson = JsonUtility.ToJson(save);
+        Debug.Log(saveJson);
+        // using binary to save game
+        FileStream fs = new FileStream(Application.dataPath + "/save.txt", FileMode.Create);
+        byte[] bytes = new UTF8Encoding().GetBytes(saveJson.ToString());
+        fs.Write(bytes, 0, bytes.Length);
+      
+        fs.Close();
 
-        //bf.Serialize(fileStream, save);
-        //fileStream.Close();
+        //BinaryFormatter bf = new BinaryFormatter();
+        //FileStream file = File.Create(Application.dataPath + "/gamesave.save");
+        //bf.Serialize(file, save);
+        //file.Close();
 
     }
 
     IEnumerator ShowSavingText()
     {
         savingText.SetActive(true);
+        saveButton.GetComponent<Button>().enabled = false;
         yield return new WaitForSeconds(1);
         savingText.SetActive(false);
+        saveButton.GetComponent<Button>().enabled = true;
     }
 
     /// <summary>
@@ -87,11 +101,13 @@ public class GameManager : MonoBehaviour
         // 1. create save obj
         Save save = new Save();
         // 2. save the number of coins
-        save.coinNum = Collectives.instance.CoinCount;
+        save.coinNum = GameAttributes.instance.CoinCount;
         // 3. save the number of diamonds
-        save.diamondNum = Collectives.instance.DiamondCount;
+        save.diamondNum = GameAttributes.instance.DiamondCount;
         // 4. save the position of player
-        save.playPosition = player.transform.position;
+        save.playerPositionX = player.transform.position.x;
+        save.playerPositionY = player.transform.position.y;
+        save.playerPositionZ = player.transform.position.z;
 
         return save;
     }

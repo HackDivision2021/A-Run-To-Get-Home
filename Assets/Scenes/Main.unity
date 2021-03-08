@@ -5725,7 +5725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724740256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39, z: -12.28}
+  m_LocalPosition: {x: 0, y: 0.39, z: -12}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 247467084}
@@ -7540,7 +7540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88050550868d343da9e96a318e17ef05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: 0
   life: 1
 --- !u!1 &910857375
 GameObject:
@@ -9633,7 +9632,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181389157}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1181389159
 Camera:
   m_ObjectHideFlags: 0
@@ -9684,8 +9683,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181389157}
-  m_LocalRotation: {x: 0.16895387, y: 0, z: 0, w: 0.98562396}
-  m_LocalPosition: {x: 0, y: 4.77, z: -21.22}
+  m_LocalRotation: {x: 0.16895388, y: 0.000000008479511, z: -0.0000000014535424, w: 0.98562396}
+  m_LocalPosition: {x: 0, y: 4.77, z: -20.939999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11638,8 +11637,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468299271}
-  m_LocalRotation: {x: 0.16895387, y: -0, z: -0, w: 0.98562396}
-  m_LocalPosition: {x: 1.1157961, y: 5.9088826, z: -14.588068}
+  m_LocalRotation: {x: 0.16895388, y: 0.000000008479511, z: -0.0000000014535424, w: 0.98562396}
+  m_LocalPosition: {x: 1.1157961, y: 5.9088826, z: -14.308067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 340651170}
@@ -16545,7 +16544,7 @@ MonoBehaviour:
   pauseButton: {fileID: 1088658629}
   saveButton: {fileID: 757123564}
   inventoryPanel: {fileID: 1682693930}
-  player: {fileID: 724740256}
+  player: {fileID: 247467083}
   savingText: {fileID: 1655473988}
 --- !u!4 &2080990118
 Transform:
@@ -16573,6 +16572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f6fb4a411f1412688f0e05eb54200e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinCount: 0
+  diamondCount: 0
+  <CoinCount>k__BackingField: 0
+  <DiamondCount>k__BackingField: 0
 --- !u!1001 &2086965494
 PrefabInstance:
   m_ObjectHideFlags: 0
