@@ -20,7 +20,7 @@ public class Destination : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Victory");
         }
     }
 }
