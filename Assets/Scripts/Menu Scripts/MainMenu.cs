@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
     {
         SoundManager.instance.PlayClickSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Scene current = SceneManager.GetActiveScene();
     }
 
     // Quit button logic

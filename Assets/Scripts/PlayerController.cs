@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     float durationTime = 0.4f;
     public AudioClip deadClip;
     public bool isRoll;
+    public KeyBindManager keyBindManager;
 
     //public variables
     public float horizontalSpeed = 3f;
@@ -230,11 +231,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void PlayAnimation()
     {
-        if (inputDirection == InputDirection.LEFT)
+        if (inputDirection == InputDirection.LEFT && Input.GetKeyDown(keyBindManager.keys["Left"]))
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayTurnLeft;
         }
-        else if (inputDirection == InputDirection.RIGHT)
+        else if (inputDirection == InputDirection.RIGHT && Input.GetKeyDown(keyBindManager.keys["Right"]))
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayTurnRight;
         }
@@ -242,7 +243,7 @@ public class PlayerController : MonoBehaviour
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayJumpUp;
         }
-        else if (inputDirection == InputDirection.DOWN)
+        else if (inputDirection == InputDirection.DOWN && Input.GetKeyDown(keyBindManager.keys["Down"]))
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRoll;
         }

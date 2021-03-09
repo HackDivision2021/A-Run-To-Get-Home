@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject savingText;
     public GameObject enemies;
 
+
     //logic for clicking on the pause button
     public void OnPauseButtonClicked()
     {
@@ -27,11 +28,14 @@ public class GameManager : MonoBehaviour
         resumeButton.SetActive(true);
         pauseButton.SetActive(false);
         saveButton.SetActive(true);
+        
         player.GetComponent<Animation>().enabled = false;
         player.GetComponent<PlayerController>().enabled = false;
 
         enemies = GameObject.Find("Enemies");
         enemies.SetActive(false);
+
+
     }
 
     //logic for clicking on the resume button
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Animation>().enabled = true;
         player.GetComponent<PlayerController>().enabled = true;
         enemies.SetActive(true);
+
     }
 
     private void Update()
