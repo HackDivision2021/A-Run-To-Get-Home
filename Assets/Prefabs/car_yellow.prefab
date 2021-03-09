@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 4898560927746539923}
   m_Layer: 0
   m_Name: car_yellow
-  m_TagString: Obstacle
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

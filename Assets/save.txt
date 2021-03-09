@@ -1,1 +1,1 @@
-{"coinNum":5,"diamondNum":0,"playerPositionX":0.06331336498260498,"playerPositionY":0.6540288925170898,"playerPositionZ":48.85838317871094}
+{"coinNum":5,"diamondNum":0,"playerPositionX":3.465466260910034,"playerPositionY":0.6540288925170898,"playerPositionZ":51.046844482421878}

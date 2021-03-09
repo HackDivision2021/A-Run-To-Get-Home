@@ -98,10 +98,16 @@ public class PlayerController : MonoBehaviour
     // function to detect player collision and decrese player health
     private void OnTriggerEnter(Collider other)
     {
-        //if player collides with an object with Tag "Obstacle" (barriers and cars) 
-        //life bar is decreased by 1 and hitObstacle sound is played
-        //"Obstacle is destroyed on collision"
-        if (other.CompareTag("Obstacle"))
+        //if player collides with an object with Tag "Obstacle" (barriers and cars)
+        //and he is rolling, he doesn't lose any life points else if he is not rolling
+        //or the object Tag is "Barrier", life bar is decreased by 1 and hitObstacle 
+        //sound is played. "Obstacle" and "Barrier" are destroyed on collision either way
+        if (other.CompareTag("Obstacle") && isRoll)
+        {
+            AudioSource.PlayClipAtPoint(hitObstacle, this.transform.position);
+            Destroy(other.gameObject);
+        } 
+        else if ((other.CompareTag("Obstacle") && !isRoll) || (other.CompareTag("Barrier")))
         {
             health--;
             slider.value = health;
