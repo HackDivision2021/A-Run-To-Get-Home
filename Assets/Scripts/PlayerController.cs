@@ -29,12 +29,17 @@ public enum CurrentPosition
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 1.0f;
+
     InputDirection inputDirection;
     Vector3 currentMousePos;
     bool activeInput;
+
     CurrentPosition currentPosition;
+    CurrentPosition fromPosition;
+
     Vector3 xDirection;
     Vector3 moveDirection;
+
     CharacterController controller;
     float currentTime;
     float durationTime = 0.4f;
@@ -46,8 +51,8 @@ public class PlayerController : MonoBehaviour
     public float horizontalSpeed = 3f;
 
     public static PlayerController instance;
-    //float jumpForce = 100f;
-    //float gravity = 10f;
+    public float jumpForce = 8f;
+    public float gravity = 20f;
 
     //Health Attributes
     [Header("Health Attributes")]
@@ -60,13 +65,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         instance = this;
-        //StartCoroutine(UpdateAction());
+        StartCoroutine(UpdateAction());
         currentPosition = CurrentPosition.MIDDLE;
         controller = GetComponent<CharacterController>();
 
         // assigns health value to the health bar slider
         health = 5;
         slider.value = health;
+        StartCoroutine(UpdateAction());
 
     }
 
@@ -87,14 +93,18 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Move();
+        #region WebGL control
+        //Move();
+        #endregion
 
         moveDirection.z = speed;
-        //moveDirection.y -= gravity * Time.deltaTime;
+
+        moveDirection.y -= gravity * Time.deltaTime;
 
         controller.Move((xDirection * horizontalSpeed + moveDirection) * Time.deltaTime);
 
     }
+
 
     // function to detect player collision and decrese player health
     private void OnTriggerEnter(Collider other)
@@ -131,12 +141,14 @@ public class PlayerController : MonoBehaviour
         {
             GetInputDirection();
             //PlayAnimation();
+            MoveLeftRight();
+            MoveForward();
             yield return 0;
         }
     }
 
     /// <summary>
-    /// get the direction of input
+    /// Mobile Control: get the direction of input
     /// </summary>
     void GetInputDirection()
     {
@@ -149,7 +161,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButton(0) && activeInput)
         {
             Vector3 vec = Input.mousePosition - currentMousePos;
-            if (vec.magnitude > 40)
+            if (vec.magnitude > 20)
             {
                 float angleY = Mathf.Acos(Vector3.Dot(vec.normalized, Vector2.up)) * Mathf.Rad2Deg;
                 float angleX = Mathf.Acos(Vector3.Dot(vec.normalized, Vector2.right)) * Mathf.Rad2Deg;
@@ -176,7 +188,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// move method
+    /// WebGL Control: move method
     /// </summary>
     void Move()
     {
@@ -231,11 +243,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void PlayAnimation()
     {
-        if (inputDirection == InputDirection.LEFT && Input.GetKeyDown(keyBindManager.keys["Left"]))
+        if (inputDirection == InputDirection.LEFT)
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayTurnLeft;
         }
-        else if (inputDirection == InputDirection.RIGHT && Input.GetKeyDown(keyBindManager.keys["Right"]))
+        else if (inputDirection == InputDirection.RIGHT)
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayTurnRight;
         }
@@ -243,7 +255,7 @@ public class PlayerController : MonoBehaviour
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayJumpUp;
         }
-        else if (inputDirection == InputDirection.DOWN && Input.GetKeyDown(keyBindManager.keys["Down"]))
+        else if (inputDirection == InputDirection.DOWN)
         {
             AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRoll;
         }
@@ -260,12 +272,14 @@ public class PlayerController : MonoBehaviour
         if (currentPosition == CurrentPosition.MIDDLE)
         {
             currentPosition = CurrentPosition.LEFT;
+            fromPosition = CurrentPosition.MIDDLE;
             if (transform.position.x <= 0.5f) xDirection=Vector3.zero;
         }
         else if (currentPosition == CurrentPosition.RIGHT)
         {
-            if (transform.position.x <= 2.5f) xDirection = Vector3.zero;
             currentPosition = CurrentPosition.MIDDLE;
+            fromPosition = CurrentPosition.RIGHT;
+            if (transform.position.x <= 2.5f) xDirection = Vector3.zero;
         }
 
         AnimationManger.instance.animationHandler = AnimationManger.instance.PlayTurnLeft;
@@ -282,15 +296,94 @@ public class PlayerController : MonoBehaviour
         if (currentPosition == CurrentPosition.MIDDLE)
         {
             currentPosition = CurrentPosition.RIGHT;
+            fromPosition = CurrentPosition.MIDDLE;
         }
         else if (currentPosition == CurrentPosition.LEFT)
         {
             currentPosition = CurrentPosition.MIDDLE;
+            fromPosition = CurrentPosition.LEFT;
         }
 
         AnimationManger.instance.animationHandler = AnimationManger.instance.PlayTurnRight;
         xDirection = Vector3.right;
 
+    }
+
+    void MoveLeftRight()
+    {
+        if (inputDirection == InputDirection.LEFT)
+        {
+            MoveLeft();
+        }else if (inputDirection == InputDirection.RIGHT)
+        {
+            MoveRight();
+        }
+
+        if (currentPosition == CurrentPosition.LEFT)
+        {
+            if (transform.position.x < -3f)
+            {
+                xDirection=Vector3.zero;
+                transform.position = new Vector3(-3f, transform.position.y, transform.position.z);
+            }
+        }
+
+        if (currentPosition == CurrentPosition.RIGHT)
+        {
+            if (transform.position.x > 3f)
+            {
+                xDirection = Vector3.zero;
+                transform.position = new Vector3(3f, transform.position.y, transform.position.z);
+            }
+        }
+
+        if (currentPosition == CurrentPosition.MIDDLE)
+        {
+            if (fromPosition == CurrentPosition.LEFT && transform.position.x > 0)
+                xDirection = Vector3.zero;
+            if (fromPosition == CurrentPosition.RIGHT && transform.position.x < 0)
+                xDirection = Vector3.zero;
+        }
+    }
+
+    void MoveForward()
+    {
+        if (inputDirection == InputDirection.DOWN)
+        {
+            AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRoll;
+        }
+        if (controller.isGrounded)
+        {
+            moveDirection = Vector3.zero;
+
+            if (AnimationManger.instance.animationHandler != AnimationManger.instance.PlayJumpUp
+                && AnimationManger.instance.animationHandler != AnimationManger.instance.PlayTurnLeft
+                && AnimationManger.instance.animationHandler != AnimationManger.instance.PlayTurnRight
+                && AnimationManger.instance.animationHandler != AnimationManger.instance.PlayDead
+                && AnimationManger.instance.animationHandler != AnimationManger.instance.PlayRoll)
+            {
+                AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRun;
+            }
+            if (inputDirection == InputDirection.UP)
+            {
+                Jump();
+            }
+        }
+        else
+        {
+            if (AnimationManger.instance.animationHandler != AnimationManger.instance.PlayJumpUp)
+            {
+                AnimationManger.instance.animationHandler = AnimationManger.instance.PlayJumpLoop;
+            }
+        }
+    }
+
+    void Jump()
+    {
+        AnimationManger.instance.animationHandler = AnimationManger.instance.PlayJumpUp;
+        moveDirection.y += jumpForce;
+        if (controller.isGrounded)
+            AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRun;
     }
 
     /// <summary>
