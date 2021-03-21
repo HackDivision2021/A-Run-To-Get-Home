@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour, IPointerEnterHandler
 {
+
+    public PlayerController myPlayer;
+    public CharacterController controller;
+    public SceneDataSO sceneData;
+
     //sound to trigger on button
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -19,6 +24,23 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
         SoundManager.instance.PlayClickSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Scene current = SceneManager.GetActiveScene();
+    }
+
+
+    public void LoadGame()
+    {
+        SoundManager.instance.PlayClickSound();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Scene current = SceneManager.GetActiveScene();
+
+        myPlayer = FindObjectOfType<PlayerController>();
+
+        myPlayer.controller.enabled = false;
+        myPlayer.transform.position = sceneData.playerPosition;
+        myPlayer.controller.enabled = true;
+
+        myPlayer.health = sceneData.playerHealth;
+        myPlayer.SetHealth(sceneData.playerHealth);
     }
 
     // Quit button logic

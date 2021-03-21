@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 /***
  * This class is for UI control
@@ -13,21 +15,30 @@ public class GameManager : MonoBehaviour
 {
     public GameObject resumeButton;
     public GameObject pauseButton;
+    public GameObject loadButton;
     public GameObject saveButton;
+    public GameObject exitButton;
     public GameObject inventoryPanel;
     private bool isInventoryPanelOpen;
     public GameObject player;
     public GameObject savingText;
     public GameObject enemies;
 
+    [Header("PLayer Settings")]
+    public PlayerController myPlayer;
+
+    [Header("Scene Data")]
+    public SceneDataSO sceneData;
 
     //logic for clicking on the pause button
     public void OnPauseButtonClicked()
     {
         //Time.timeScale = 0;
-        resumeButton.SetActive(true);
         pauseButton.SetActive(false);
+        resumeButton.SetActive(true);
+        loadButton.SetActive(true);
         saveButton.SetActive(true);
+        exitButton.SetActive(true);
         
         player.GetComponent<Animation>().enabled = false;
         player.GetComponent<PlayerController>().enabled = false;
@@ -42,13 +53,22 @@ public class GameManager : MonoBehaviour
     public void OnResumeButtonClicked()
     {
         //Time.timeScale = 1;
-        resumeButton.SetActive(false);
         pauseButton.SetActive(true);
+        resumeButton.SetActive(false);
+        loadButton.SetActive(false);
         saveButton.SetActive(false);
+        exitButton.SetActive(false);
         player.GetComponent<Animation>().enabled = true;
         player.GetComponent<PlayerController>().enabled = true;
         enemies.SetActive(true);
 
+    }
+
+    public void OnExitButtonClicked()
+    {
+        //SoundManager.instance.PlayClickSound();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        Scene current = SceneManager.GetActiveScene();
     }
 
     private void Update()
@@ -67,24 +87,41 @@ public class GameManager : MonoBehaviour
         inventoryPanel.SetActive(isInventoryPanelOpen);
     }
 
-    /// <summary>
-    /// save button cliced, save game info
-    /// </summary>
+    //Load Game Method
+    public void LoadGame()
+    {
+        myPlayer = FindObjectOfType<PlayerController>();
+
+        myPlayer.controller.enabled = false;
+        myPlayer.transform.position = sceneData.playerPosition;
+        myPlayer.controller.enabled = true;
+
+        myPlayer.health = sceneData.playerHealth;
+        myPlayer.SetHealth(sceneData.playerHealth);
+    }
+
+    //Save Game method
     public void SaveGame()
     {
         // 1. show the saving text for 2 seconds
         StartCoroutine(ShowSavingText());
 
+        myPlayer = FindObjectOfType<PlayerController>();
+
+        sceneData.playerPosition = myPlayer.transform.position;
+        sceneData.playerHealth = myPlayer.health;
+
+
         // 2. save game
-        Save save = CreateSaveGO();
-        string saveJson = JsonUtility.ToJson(save);
-        Debug.Log(saveJson);
-        // using binary to save game
-        FileStream fs = new FileStream(Application.dataPath + "/save.txt", FileMode.Create);
-        byte[] bytes = new UTF8Encoding().GetBytes(saveJson.ToString());
-        fs.Write(bytes, 0, bytes.Length);
-      
-        fs.Close();
+        //Save save = CreateSaveGO();
+        //string saveJson = JsonUtility.ToJson(save);
+        //Debug.Log(saveJson);
+        //// using binary to save game
+        //FileStream fs = new FileStream(Application.dataPath + "/save.txt", FileMode.Create);
+        //byte[] bytes = new UTF8Encoding().GetBytes(saveJson.ToString());
+        //fs.Write(bytes, 0, bytes.Length);
+
+        //fs.Close();
 
         //BinaryFormatter bf = new BinaryFormatter();
         //FileStream file = File.Create(Application.dataPath + "/gamesave.save");

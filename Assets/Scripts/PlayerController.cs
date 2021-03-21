@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     Vector3 xDirection;
     Vector3 moveDirection;
 
-    CharacterController controller;
+    public CharacterController controller;
     float currentTime;
     float durationTime = 0.4f;
     public AudioClip deadClip;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     //Health Attributes
     [Header("Health Attributes")]
-    public float health;
+    public int health;
     public Slider slider;
     public AudioClip hitObstacle;
 
@@ -133,6 +133,12 @@ public class PlayerController : MonoBehaviour
             health = 0;
             slider.value = health;
         }
+    }
+
+    public void SetHealth(int newHealth)
+    {
+        slider.value = newHealth;
+        health = newHealth;
     }
 
     IEnumerator UpdateAction()
@@ -393,22 +399,6 @@ public class PlayerController : MonoBehaviour
     {
         AnimationManger.instance.animationHandler = AnimationManger.instance.PlayRoll;
     }
-
-    //void JumpUp()
-    //{
-    //    if (controller.isGrounded && currentTime > durationTime)
-    //    {
-    //        if (AnimationManger.instance.animationHandler == AnimationManger.instance.PlayRun)
-    //        {
-    //            AnimationManger.instance.animationHandler = AnimationManger.instance.PlayJumpUp;
-    //            moveDirection.y += jumpForce;
-    //            currentTime = 0;
-    //        }else
-    //        {
-    //            currentTime += Time.deltaTime;
-    //        }
-    //    }
-    //}
 
     /// <summary>
     /// load failure scene
