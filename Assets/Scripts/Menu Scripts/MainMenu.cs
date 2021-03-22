@@ -11,6 +11,10 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
     public CharacterController controller;
     public SceneDataSO sceneData;
 
+    private void Start()
+    {
+    }
+
     //sound to trigger on button
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -32,6 +36,8 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
         SoundManager.instance.PlayClickSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Scene current = SceneManager.GetActiveScene();
+
+        SingletonPersistentManager.Instance.value++;
 
         myPlayer = FindObjectOfType<PlayerController>();
 

@@ -11,6 +11,11 @@ public class FloorSetting : MonoBehaviour
     public GameObject nextFloor;
 
 
+    private void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {

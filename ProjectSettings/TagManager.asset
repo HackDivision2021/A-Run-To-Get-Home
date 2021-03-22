@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - Barrier
   - OptionsMenu
+  - Menu
+  - roadA
+  - roadB
   layers:
   - Default
   - TransparentFX
