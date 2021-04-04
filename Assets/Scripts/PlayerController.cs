@@ -60,6 +60,15 @@ public class PlayerController : MonoBehaviour
     public Slider slider;
     public AudioClip hitObstacle;
 
+    //Inventory Attributes
+    [Header("Inventory Attributes")]
+    public int coinAmount;
+    public int diamondAmount;
+    public Text coinText;
+    public Text diamondText;
+    public GameObject coin;
+    public GameObject diamond;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +77,10 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(UpdateAction());
         currentPosition = CurrentPosition.MIDDLE;
         controller = GetComponent<CharacterController>();
+
+        //assigns diamond and coin amount at start
+        coinAmount = 0;
+        diamondAmount = 0;
 
         // assigns health value to the health bar slider
         health = 5;
@@ -132,6 +145,35 @@ public class PlayerController : MonoBehaviour
         {
             health = 0;
             slider.value = health;
+        }
+
+        //Records coins amount on collision with them
+        //if coinAmount == 0, then coin item is kept hidden
+        //otherwise it turns active and counter keeps counting
+        if (other.CompareTag("Coin") && coinAmount == 0)
+        {
+            coin.SetActive(true);
+            coinAmount++;
+            coinText.text = "x" + coinAmount;
+        } 
+        else if (other.CompareTag("Coin"))
+        {            
+            coinAmount++;
+            coinText.text = "x" + coinAmount;
+        }
+        //Records diamonds amount on collision with them
+        //if diamondAmount == 0, then diamond item is kept hidden
+        //otherwise it turns active and counter keeps counting
+        if (other.CompareTag("Diamond") && diamondAmount == 0)
+        {
+            diamond.SetActive(true);
+            diamondAmount++;
+            diamondText.text = "x" + diamondAmount;
+        }
+        else if (other.CompareTag("Diamond"))
+        {            
+            diamondAmount++;
+            diamondText.text = "x" + diamondAmount;
         }
     }
 
