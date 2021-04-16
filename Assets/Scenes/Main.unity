@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.02
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.6367924, g: 0.7890409, b: 1, a: 1}
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8f5930b98d4f01e4ea780cbd5185fa3b, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 2cb4388c06e20aa4588954387835407b, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3905,9 +3905,9 @@ MonoBehaviour:
   m_VerticalDamping: 0.5
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.02
+  m_DeadZoneWidth: 0.5389734
   m_DeadZoneHeight: 0.12
-  m_SoftZoneWidth: 0.1
+  m_SoftZoneWidth: 0.5389734
   m_SoftZoneHeight: 0.12
   m_BiasX: 0
   m_BiasY: 0
@@ -10202,7 +10202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026480305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1157961, y: -1.1388826, z: -6.6319313}
+  m_LocalPosition: {x: -1.94, y: -1.1388826, z: -6.6319313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1468299272}
@@ -11606,7 +11606,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 32.15
   orthographic: 0
   orthographic size: 5
@@ -11632,7 +11632,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181389157}
-  m_LocalRotation: {x: 0.16895387, y: 0.000000008479511, z: -0.0000000014535423, w: 0.98562396}
+  m_LocalRotation: {x: 0.16895387, y: 8.9224844e-10, z: -1.5294759e-10, w: 0.98562396}
   m_LocalPosition: {x: 0, y: 4.77, z: -20.475018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -11680,7 +11680,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181389157}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 8527c6277ec317f429497558a4507f59, type: 2}
   m_audioClip: {fileID: 8300000, guid: 5339ebb247291461aa6a506afd4455bb, type: 3}
@@ -13826,8 +13826,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468299271}
-  m_LocalRotation: {x: 0.16895387, y: 0.000000008479511, z: -0.0000000014535423, w: 0.98562396}
-  m_LocalPosition: {x: 1.1157961, y: 5.9088826, z: -13.843086}
+  m_LocalRotation: {x: 0.16895387, y: 8.9224844e-10, z: -1.5294759e-10, w: 0.98562396}
+  m_LocalPosition: {x: 1.94, y: 5.9088826, z: -13.843086}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 340651170}
@@ -13858,7 +13858,7 @@ MonoBehaviour:
     FieldOfView: 32.15
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 100
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:
@@ -20193,10 +20193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f6fb4a411f1412688f0e05eb54200e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCount: 0
-  diamondCount: 0
-  <CoinCount>k__BackingField: 0
-  <DiamondCount>k__BackingField: 0
 --- !u!1001 &2086965494
 PrefabInstance:
   m_ObjectHideFlags: 0
