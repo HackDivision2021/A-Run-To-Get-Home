@@ -16,6 +16,11 @@ TagManager:
   - DiamondItem
   - Coin
   - Diamond
+  - SlideTutorial
+  - JumpTutorial
+  - PoliceTutorial
+  - DodgeTutorial
+  - uselessWorkAchievement
   layers:
   - Default
   - TransparentFX

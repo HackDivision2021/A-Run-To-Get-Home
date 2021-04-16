@@ -11,11 +11,6 @@ public class Coin : MonoBehaviour
     public GameObject hitEffect;
     public AudioClip hitClip;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

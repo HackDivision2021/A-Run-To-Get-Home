@@ -8,7 +8,7 @@ using UnityEngine;
 public class GameAttributes : MonoBehaviour
 {
     private int _coinCount;
-    private int diamondCount;
+    private int _diamondCount;
 
     public int CoinCount { get; set; }
     public int DiamondCount { get; set; }
@@ -22,9 +22,4 @@ public class GameAttributes : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
